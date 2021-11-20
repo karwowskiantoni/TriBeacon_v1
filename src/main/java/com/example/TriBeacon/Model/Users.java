@@ -1,10 +1,16 @@
 package com.example.TriBeacon.Model;
 
+import org.springframework.web.bind.annotation.GetMapping;
+
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class Users {
     private final Map<String, User> map = new HashMap<>();
@@ -25,5 +31,4 @@ public class Users {
     public List<User> getUsers() {
         return new ArrayList<>(map.values());
     }
-
 }
