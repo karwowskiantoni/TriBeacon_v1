@@ -1,8 +1,10 @@
 package com.example.TriBeacon.Model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Users {
     private final Map<String, User> map = new HashMap<>();
@@ -21,7 +23,7 @@ public class Users {
     }
 
     public List<User> getUsers() {
-        return (List<User>) map.values();
+        return new ArrayList<>(map.values());
     }
 
 }
