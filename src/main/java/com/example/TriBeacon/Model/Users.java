@@ -15,10 +15,25 @@ public class Users {
 
   public Polygon calculatePosition(String name) {
     User user = map.get(name);
-    if(user.isBeacon()) {
+    if (user.isBeacon()) {
       return polygonInRange(user.x(), user.y(), MIN_RANGE);
     } else {
-      return polygonInRange(300, 300, MIN_RANGE);
+      Algorithm algorithm = new Algorithm();
+      Map<String, Integer> connectedBeacons = algorithm.BDSBeaconPaths(user);
+      List<Polygon> polygons =
+          connectedBeacons.entrySet().stream()
+              .map(
+                  beacon ->
+                      polygonInRange(
+                          map.get(beacon.getKey()).x(),
+                          map.get(beacon.getKey()).y(),
+                          MIN_RANGE * beacon.getValue()))
+              .collect(Collectors.toList());
+      Polygon polygon = polygons.get(0);
+      for(int i = 1; i < polygons.size(); i++) {
+        polygon = (Polygon) polygons.get(i).intersection(polygon);
+      }
+      return polygon;
     }
   }
 
