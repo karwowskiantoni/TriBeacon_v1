@@ -18,14 +18,6 @@ public class User {
         y = 0;
     }
 
-    public User(String name, boolean isBeacon) {
-        this.name = name;
-        connections = new HashSet<>();
-        this.isBeacon = isBeacon;
-        x = 0;
-        y = 0;
-    }
-
     public User(String name, double x, double y) {
         this.name = name;
         connections = new HashSet<>();
