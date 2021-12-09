@@ -9,25 +9,33 @@ import java.util.stream.Collectors;
 
 @RestController
 public class MainController {
-    Users users = new Users();
+  Users users = new Users();
 
-    @PostMapping("/subscribe")
-    public boolean subscribe(@RequestParam String name) {
-        return users.add(name);
-    }
+  @PostMapping("/subscribe/beacon")
+  public void subscribeBeacon(
+      @RequestParam String name, @RequestParam double x, @RequestParam double y) {
+    users.addBeacon(name, x, y);
+  }
 
-    @PostMapping("/update")
-    public void update(@RequestBody UserDto userDto) {
-        users.update(userDto.getName(), userDto.getConnections());
-    }
+  @PostMapping("/subscribe/user")
+  public void subscribeUser(@RequestParam String name) {
+    users.addUser(name);
+  }
 
-    @GetMapping("/position")
-    public String getPosition(@RequestParam String name) {
-        return new GeometryJSON().toString(users.calculatePosition(name));
-    }
+  @PostMapping("/update")
+  public void update(@RequestBody UserDto userDto) {
+    users.update(userDto.getName(), userDto.getConnections());
+  }
 
-    @GetMapping("/positions")
-    public List<String> getPositions() {
-        return users.calculatePositions().stream().map(polygon -> new GeometryJSON().toString(polygon)).collect(Collectors.toList());
-    }
+  @GetMapping("/position")
+  public String getPosition(@RequestParam String name) {
+    return new GeometryJSON().toString(users.calculatePosition(name));
+  }
+
+  @GetMapping("/positions")
+  public List<String> getPositions() {
+    return users.calculatePositions().stream()
+        .map(polygon -> new GeometryJSON().toString(polygon))
+        .collect(Collectors.toList());
+  }
 }

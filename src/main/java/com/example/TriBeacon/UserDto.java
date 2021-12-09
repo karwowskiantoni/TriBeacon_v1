@@ -1,7 +1,6 @@
 package com.example.TriBeacon;
 
 import com.example.TriBeacon.Model.User;
-import com.example.TriBeacon.Model.Users;
 
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -11,7 +10,7 @@ public class UserDto {
     private Set<String> connections;
 
     public static UserDto fromUser(User user) {
-        return new UserDto(user.getName(), user.getConnections().stream().map(User::getName).collect(Collectors.toSet()));
+        return new UserDto(user.name(), user.connections().stream().map(User::name).collect(Collectors.toSet()));
     }
 
     public UserDto() {

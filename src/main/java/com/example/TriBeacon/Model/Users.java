@@ -14,6 +14,9 @@ public class Users {
   private final double MAX_RANGE = 5;
 
   public Polygon calculatePosition(String name) {
+    Set<User> connections = map.get(name).connections();
+    //    List<List<User>> connectionsToBeacons =
+    User connection = connections.stream().findAny().get();
     return polygonInRange(0, 0, MIN_RANGE);
   }
 
@@ -21,13 +24,12 @@ public class Users {
     return map.keySet().stream().map(this::calculatePosition).collect(Collectors.toSet());
   }
 
-  public boolean add(String name) {
-    if (map.containsKey(name)) {
-      return false;
-    } else {
-      map.put(name, new User(name));
-      return true;
-    }
+  public void addBeacon(String name, double x, double y) {
+    map.put(name, new User(name, x, y));
+  }
+
+  public void addUser(String name) {
+    map.put(name, new User(name));
   }
 
   public void update(String name, Set<String> connections) {
@@ -36,12 +38,8 @@ public class Users {
 
   private Set<User> getByNames(Set<String> connections) {
     return map.values().stream()
-        .filter(user -> connections.contains(user.getName()))
+        .filter(user -> connections.contains(user.name()))
         .collect(Collectors.toSet());
-  }
-
-  public User getByName(String name) {
-    return map.get(name);
   }
 
   private Polygon polygonInRange(double x, double y, double radius) {
