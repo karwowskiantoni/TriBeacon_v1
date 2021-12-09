@@ -19,7 +19,7 @@ public class Users {
       return polygonInRange(user.x(), user.y(), MIN_RANGE);
     } else {
       Algorithm algorithm = new Algorithm();
-      Map<String, Integer> connectedBeacons = algorithm.BDSBeaconPaths(user);
+      Map<String, Integer> connectedBeacons = algorithm.findAllConnectedBeacons(user);
       List<Polygon> polygons =
           connectedBeacons.entrySet().stream()
               .map(

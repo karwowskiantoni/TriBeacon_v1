@@ -4,8 +4,8 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Algorithm {
-  public Map<String, Integer> BDSBeaconPaths(User user) {
-    HashMap<String, Integer> paths = new HashMap<>();
+  public Map<String, Integer> findAllConnectedBeacons(User user) {
+    HashMap<String, Integer> beaconsDepth = new HashMap<>();
     List<UserWithDepth> neighbours =
         user.connections().stream()
             .map(connection -> new UserWithDepth(connection, 1))
@@ -17,38 +17,40 @@ public class Algorithm {
     visited.addAll(neighbours);
     while (!queue.isEmpty()) {
       UserWithDepth neighbour = queue.getFirst();
-      if (neighbour.user.isBeacon()) {
-        paths.put(neighbour.user.name(), neighbour.depth);
-      }
+      addIfBeacon(beaconsDepth, neighbour);
       queue.removeFirst();
       List<UserWithDepth> connections =
           neighbour.user.connections().stream()
               .map(connection -> new UserWithDepth(connection, neighbour.depth + 1))
               .collect(Collectors.toList());
       for (UserWithDepth connection : connections) {
-        if (!exists(connection, connections)) {
+        if (notExists(connection, visited)) {
           visited.add(connection);
           queue.add(connection);
-          if (connection.user.isBeacon()) {
-            paths.put(connection.user.name(), connection.depth);
-          }
+          addIfBeacon(beaconsDepth, connection);
         }
       }
     }
-    return paths;
+    return beaconsDepth;
   }
 
-  private boolean exists(UserWithDepth userToCompare, List<UserWithDepth> users){
+  private void addIfBeacon(HashMap<String, Integer> map, UserWithDepth dUser){
+    if(dUser.user.isBeacon()){
+      map.put(dUser.user.name(), dUser.depth);
+    }
+  }
+
+  private boolean notExists(UserWithDepth userToCompare, List<UserWithDepth> users){
     for (UserWithDepth user:
             users) {
       if(Objects.equals(user.user.name(), userToCompare.user.name())){
-        return true;
+        return false;
       }
     }
-    return false;
+    return true;
   }
 
-  private class UserWithDepth {
+  private static class UserWithDepth {
     public User user;
     public int depth;
 
