@@ -1,4 +1,4 @@
-package com.example.TriBeacon.model;
+package com.example.TriBeacon.Model;
 
 import java.util.*;
 import java.util.stream.Collectors;

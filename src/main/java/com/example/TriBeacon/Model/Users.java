@@ -1,4 +1,4 @@
-package com.example.TriBeacon.model;
+package com.example.TriBeacon.Model;
 
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.GeometryFactory;
