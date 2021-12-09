@@ -45,4 +45,9 @@ public class MainController {
   public List<UserDto> getUsers() {
     return users.getUsers().stream().map(UserDto::fromUser).collect(Collectors.toList());
   }
+
+  @GetMapping("/delete")
+  public void deleteAll() {
+    users.deleteAll();
+  }
 }

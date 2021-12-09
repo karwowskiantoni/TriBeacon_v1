@@ -61,6 +61,10 @@ public class Users {
     return new ArrayList<>(map.values());
   }
 
+  public void deleteAll() {
+    map.clear();
+  }
+
   private Set<User> getByNames(Set<String> connections) {
     return map.values().stream()
         .filter(user -> connections.contains(user.name()))
