@@ -1,5 +1,7 @@
 package com.example.TriBeacon.Model;
 
+import com.vividsolutions.jts.geom.Polygon;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -39,7 +41,16 @@ public class User {
         return name;
     }
 
+
     public boolean isBeacon() {
         return isBeacon;
+    }
+
+    public double x() {
+        return x;
+    }
+
+    public  double y() {
+        return y;
     }
 }
