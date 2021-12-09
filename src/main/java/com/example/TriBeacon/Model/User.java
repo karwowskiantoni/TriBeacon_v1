@@ -3,6 +3,7 @@ package com.example.TriBeacon.Model;
 import com.vividsolutions.jts.geom.Polygon;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 public class User {
@@ -52,5 +53,18 @@ public class User {
 
     public  double y() {
         return y;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
+        User user = (User) o;
+        return isBeacon == user.isBeacon && Double.compare(user.x, x) == 0 && Double.compare(user.y, y) == 0 && name.equals(user.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, isBeacon, x, y);
     }
 }

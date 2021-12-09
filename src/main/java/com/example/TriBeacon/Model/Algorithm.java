@@ -6,11 +6,11 @@ import java.util.stream.Collectors;
 public class Algorithm {
   public Map<String, Integer> BDSBeaconPaths(User user) {
     HashMap<String, Integer> paths = new HashMap<>();
-    Set<UserWithDepth> neighbours =
+    List<UserWithDepth> neighbours =
         user.connections().stream()
             .map(connection -> new UserWithDepth(connection, 1))
-            .collect(Collectors.toSet());
-    HashSet<UserWithDepth> visited = new HashSet<>();
+            .collect(Collectors.toList());
+    List<UserWithDepth> visited = new ArrayList<>();
     visited.add(new UserWithDepth(user, 0));
 
     LinkedList<UserWithDepth> queue = new LinkedList<>(neighbours);
@@ -21,12 +21,13 @@ public class Algorithm {
         paths.put(neighbour.user.name(), neighbour.depth);
       }
       queue.removeFirst();
-      Set<UserWithDepth> connections =
+      List<UserWithDepth> connections =
           neighbour.user.connections().stream()
               .map(connection -> new UserWithDepth(connection, neighbour.depth + 1))
-              .collect(Collectors.toSet());
+              .collect(Collectors.toList());
       for (UserWithDepth connection : connections) {
-        if (visited.add(connection)) {
+        if (!exists(connection, connections)) {
+          visited.add(connection);
           queue.add(connection);
           if (connection.user.isBeacon()) {
             paths.put(connection.user.name(), connection.depth);
@@ -35,6 +36,16 @@ public class Algorithm {
       }
     }
     return paths;
+  }
+
+  private boolean exists(UserWithDepth userToCompare, List<UserWithDepth> users){
+    for (UserWithDepth user:
+            users) {
+      if(Objects.equals(user.user.name(), userToCompare.user.name())){
+        return true;
+      }
+    }
+    return false;
   }
 
   private class UserWithDepth {
