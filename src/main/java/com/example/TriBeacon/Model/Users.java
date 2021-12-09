@@ -10,15 +10,16 @@ import java.util.stream.Collectors;
 
 public class Users {
   private final Map<String, User> map = new HashMap<>();
-  private final double MIN_RANGE = 3;
-  private final double MAX_RANGE = 5;
+  private final double MIN_RANGE = 300;
+  private final double MAX_RANGE = 500;
 
   public Polygon calculatePosition(String name) {
 //    Set<User> connections = map.get(name).connections();
-    return polygonInRange(0, 0, MIN_RANGE);
+    return polygonInRange(200, 200, MIN_RANGE);
   }
 
   public Set<Polygon> calculatePositions() {
+    GeometryFactory fact = new GeometryFactory();
     return map.keySet().stream().map(this::calculatePosition).collect(Collectors.toSet());
   }
 
