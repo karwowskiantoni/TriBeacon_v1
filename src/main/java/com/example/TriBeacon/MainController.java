@@ -38,4 +38,9 @@ public class MainController {
         .map(polygon -> new GeometryJSON().toString(polygon))
         .collect(Collectors.toList());
   }
+
+  @GetMapping("/users")
+  public List<UserDto> getUsers() {
+    return users.getUsers().stream().map(UserDto::fromUser).collect(Collectors.toList());
+  }
 }

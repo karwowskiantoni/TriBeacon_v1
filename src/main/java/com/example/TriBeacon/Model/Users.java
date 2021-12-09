@@ -36,6 +36,10 @@ public class Users {
     map.get(name).updateConnections(getByNames(connections));
   }
 
+  public List<User> getUsers() {
+    return new ArrayList<>(map.values());
+  }
+
   private Set<User> getByNames(Set<String> connections) {
     return map.values().stream()
         .filter(user -> connections.contains(user.name()))
