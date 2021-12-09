@@ -29,11 +29,14 @@ public class Users {
                           map.get(beacon.getKey()).y(),
                           MIN_RANGE * beacon.getValue()))
               .collect(Collectors.toList());
-      Polygon polygon = polygons.get(0);
-      for(int i = 1; i < polygons.size(); i++) {
-        polygon = (Polygon) polygons.get(i).intersection(polygon);
+      if(!polygons.isEmpty()) {
+        Polygon polygon = polygons.get(0);
+        for(int i = 1; i < polygons.size(); i++) {
+          polygon = (Polygon) polygons.get(i).intersection(polygon);
+        }
+        return polygon;
       }
-      return polygon;
+      return polygonInRange(0, 0, 0);
     }
   }
 
