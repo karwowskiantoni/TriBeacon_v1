@@ -8,6 +8,7 @@ import java.util.*;
 import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 
 class AlgorithmTest {
+    private final Algorithm algorithm = new Algorithm();
 
     @Test
     void BDSBeaconPaths1() {
@@ -23,10 +24,10 @@ class AlgorithmTest {
         first.updateConnections(new HashSet<>(Collections.singletonList(fourth)));
         third.updateConnections(new HashSet<>(Collections.singletonList(fifth)));
         fourth.updateConnections(new HashSet<>(Collections.singletonList(sixth)));
-        fifth.updateConnections(new HashSet<>(Collections.singletonList(seventh)));
-        Map<String, Integer> test = Algorithm.BDSBeaconPaths(core);
+        sixth.updateConnections(new HashSet<>(Collections.singletonList(seventh)));
+        Map<String, Integer> test = algorithm.BDSBeaconPaths(core);
         assertIterableEquals(new HashSet<>(Arrays.asList("2", "5", "7")), test.keySet());
-        assertIterableEquals(new HashSet<>(Arrays.asList(1, 4, 6)), test.values());
+        assertIterableEquals(new HashSet<>(Arrays.asList(1, 2, 4)), test.values());
     }
 
     @Test
@@ -43,10 +44,10 @@ class AlgorithmTest {
         first.updateConnections(new HashSet<>(Collections.singletonList(fourth)));
         third.updateConnections(new HashSet<>(Collections.singletonList(fifth)));
         fourth.updateConnections(new HashSet<>(Collections.singletonList(sixth)));
-        fifth.updateConnections(new HashSet<>(Collections.singletonList(seventh)));
-        Map<String, Integer> test = Algorithm.BDSBeaconPaths(core);
+        sixth.updateConnections(new HashSet<>(Collections.singletonList(seventh)));
+        Map<String, Integer> test = algorithm.BDSBeaconPaths(core);
         assertIterableEquals(new HashSet<>(Arrays.asList("2", "5", "7")), test.keySet());
-        assertIterableEquals(new HashSet<>(Arrays.asList(1, 4, 6)), test.values());
+        assertIterableEquals(new HashSet<>(Arrays.asList(1, 2, 4)), test.values());
     }
 
     @Test
@@ -63,10 +64,10 @@ class AlgorithmTest {
         first.updateConnections(new HashSet<>(Collections.singletonList(fourth)));
         third.updateConnections(new HashSet<>(Collections.singletonList(fifth)));
         fourth.updateConnections(new HashSet<>(Collections.singletonList(sixth)));
-        fifth.updateConnections(new HashSet<>(Collections.singletonList(seventh)));
-        Map<String, Integer> test = Algorithm.BDSBeaconPaths(core);
+        sixth.updateConnections(new HashSet<>(Collections.singletonList(seventh)));
+        Map<String, Integer> test = algorithm.BDSBeaconPaths(core);
         assertIterableEquals(new HashSet<>(Arrays.asList("2", "5", "7")), test.keySet());
-        assertIterableEquals(new HashSet<>(Arrays.asList(1, 4, 6)), test.values());
+        assertIterableEquals(new HashSet<>(Arrays.asList(1, 2, 4)), test.values());
     }
 
     @Test
@@ -83,10 +84,10 @@ class AlgorithmTest {
         first.updateConnections(new HashSet<>(Collections.singletonList(fourth)));
         third.updateConnections(new HashSet<>(Collections.singletonList(fifth)));
         fourth.updateConnections(new HashSet<>(Collections.singletonList(sixth)));
-        fifth.updateConnections(new HashSet<>(Collections.singletonList(seventh)));
-        Map<String, Integer> test = Algorithm.BDSBeaconPaths(core);
+        sixth.updateConnections(new HashSet<>(Collections.singletonList(seventh)));
+        Map<String, Integer> test = algorithm.BDSBeaconPaths(core);
         assertIterableEquals(new HashSet<>(Arrays.asList("2", "5", "7")), test.keySet());
-        assertIterableEquals(new HashSet<>(Arrays.asList(1, 4, 6)), test.values());
+        assertIterableEquals(new HashSet<>(Arrays.asList(1, 2, 4)), test.values());
     }
 
     @Test
@@ -103,10 +104,10 @@ class AlgorithmTest {
         first.updateConnections(new HashSet<>(Collections.singletonList(fourth)));
         third.updateConnections(new HashSet<>(Collections.singletonList(fifth)));
         fourth.updateConnections(new HashSet<>(Collections.singletonList(sixth)));
-        fifth.updateConnections(new HashSet<>(Collections.singletonList(seventh)));
-        Map<String, Integer> test = Algorithm.BDSBeaconPaths(core);
+        sixth.updateConnections(new HashSet<>(Collections.singletonList(seventh)));
+        Map<String, Integer> test = algorithm.BDSBeaconPaths(core);
         assertIterableEquals(new HashSet<>(Arrays.asList("2", "5", "7")), test.keySet());
-        assertIterableEquals(new HashSet<>(Arrays.asList(1, 4, 6)), test.values());
+        assertIterableEquals(new HashSet<>(Arrays.asList(1, 2, 4)), test.values());
     }
 
     @Test
@@ -123,9 +124,9 @@ class AlgorithmTest {
         first.updateConnections(new HashSet<>(Collections.singletonList(fourth)));
         third.updateConnections(new HashSet<>(Collections.singletonList(fifth)));
         fourth.updateConnections(new HashSet<>(Collections.singletonList(sixth)));
-        fifth.updateConnections(new HashSet<>(Collections.singletonList(seventh)));
-        Map<String, Integer> test = Algorithm.BDSBeaconPaths(core);
+        sixth.updateConnections(new HashSet<>(Collections.singletonList(seventh)));
+        Map<String, Integer> test = algorithm.BDSBeaconPaths(core);
         assertIterableEquals(new HashSet<>(Arrays.asList("2", "5", "7")), test.keySet());
-        assertIterableEquals(new HashSet<>(Arrays.asList(1, 4, 6)), test.values());
+        assertIterableEquals(new HashSet<>(Arrays.asList(1, 2, 4)), test.values());
     }
 }

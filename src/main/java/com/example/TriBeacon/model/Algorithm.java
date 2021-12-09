@@ -1,37 +1,46 @@
 package com.example.TriBeacon.model;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Algorithm {
     //TODO todo todo todo todo todo todo todo todo
     //each unique beacon found should be returned as name(String) + depthLevel(int)
-    public static Map<String, Integer> BDSBeaconPaths(User user) {
+    public Map<String, Integer> BDSBeaconPaths(User user) {
         HashMap<String, Integer> paths = new HashMap<>();
-        Set<User> neighbours = user.connections();
-        HashSet<User> visited = new HashSet<>();
-        visited.add(user);
+        Set<UserWithDepth>  neighbours = user.connections().stream().map(connection -> new UserWithDepth(connection, 1)).collect(Collectors.toSet());
+        HashSet<UserWithDepth> visited = new HashSet<>();
+        visited.add(new UserWithDepth(user, 0));
 
-        int counter = 0;
-        LinkedList<User> queue = new LinkedList<>(neighbours);
+        LinkedList<UserWithDepth> queue = new LinkedList<>(neighbours);
         visited.addAll(neighbours);
         while (!queue.isEmpty()){
-            User neighbour = queue.getFirst();
-            if(neighbour.isBeacon()){
-                paths.put(neighbour.name(), counter);
+            UserWithDepth neighbour = queue.getFirst();
+            if(neighbour.user.isBeacon()){
+                paths.put(neighbour.user.name(), neighbour.depth);
             }
             queue.removeFirst();
-            Set<User> connections = neighbour.connections();
-            for (User connection: connections) {
+            Set<UserWithDepth> connections = neighbour.user.connections().stream().map(connection -> new UserWithDepth(connection, neighbour.depth + 1)).collect(Collectors.toSet());
+            for (UserWithDepth connection: connections) {
                 if(visited.add(connection)){
                     queue.add(connection);
-                    if(connection.isBeacon()){
-                        paths.put(connection.name(), counter);
+                    if(connection.user.isBeacon()){
+                        paths.put(connection.user.name(), connection.depth);
                     }
                 }
             }
-            counter++;
         }
         return paths;
+    }
+
+    private class UserWithDepth{
+        public User user;
+        public int depth;
+
+        public UserWithDepth(User user, int depth) {
+            this.user = user;
+            this.depth = depth;
+        }
     }
 }
 //    def breadth_first_search(labyrinth):
