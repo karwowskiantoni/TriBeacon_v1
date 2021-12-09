@@ -1,6 +1,5 @@
-package com.example.TriBeacon.model;
+package com.example.TriBeacon.Model;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;

@@ -1,6 +1,6 @@
 package com.example.TriBeacon;
 
-import com.example.TriBeacon.model.User;
+import com.example.TriBeacon.Model.User;
 
 import java.util.Set;
 import java.util.stream.Collectors;
