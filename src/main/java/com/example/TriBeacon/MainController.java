@@ -1,6 +1,6 @@
 package com.example.TriBeacon;
 
-import com.example.TriBeacon.Model.Users;
+import com.example.TriBeacon.model.Users;
 import org.geotools.geojson.geom.GeometryJSON;
 import org.springframework.web.bind.annotation.*;
 

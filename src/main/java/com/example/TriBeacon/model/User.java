@@ -1,6 +1,4 @@
-package com.example.TriBeacon.Model;
-
-import com.vividsolutions.jts.geom.Polygon;
+package com.example.TriBeacon.model;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -16,6 +14,14 @@ public class User {
         this.name = name;
         connections = new HashSet<>();
         isBeacon = false;
+        x = 0;
+        y = 0;
+    }
+
+    public User(String name, boolean isBeacon) {
+        this.name = name;
+        connections = new HashSet<>();
+        this.isBeacon = isBeacon;
         x = 0;
         y = 0;
     }
@@ -39,5 +45,9 @@ public class User {
 
     public String name() {
         return name;
+    }
+
+    public boolean isBeacon() {
+        return isBeacon;
     }
 }
