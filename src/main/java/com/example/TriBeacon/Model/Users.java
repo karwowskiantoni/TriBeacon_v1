@@ -14,9 +14,7 @@ public class Users {
   private final double MAX_RANGE = 5;
 
   public Polygon calculatePosition(String name) {
-    Set<User> connections = map.get(name).connections();
-    //    List<List<User>> connectionsToBeacons =
-    User connection = connections.stream().findAny().get();
+//    Set<User> connections = map.get(name).connections();
     return polygonInRange(0, 0, MIN_RANGE);
   }
 
