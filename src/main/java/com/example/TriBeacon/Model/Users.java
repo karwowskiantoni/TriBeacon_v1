@@ -10,12 +10,16 @@ import java.util.stream.Collectors;
 
 public class Users {
   private final Map<String, User> map = new HashMap<>();
-  private final double MIN_RANGE = 300;
-  private final double MAX_RANGE = 500;
+  private final double MIN_RANGE = 150;
+  private final double MAX_RANGE = 250;
 
   public Polygon calculatePosition(String name) {
-//    Set<User> connections = map.get(name).connections();
-    return polygonInRange(200, 200, MIN_RANGE);
+    User user = map.get(name);
+    if(user.isBeacon()) {
+      return polygonInRange(user.x(), user.y(), MIN_RANGE);
+    } else {
+      return polygonInRange(800, 800, MIN_RANGE);
+    }
   }
 
   public Set<Polygon> calculatePositions() {

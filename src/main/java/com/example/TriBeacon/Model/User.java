@@ -40,4 +40,17 @@ public class User {
     public String name() {
         return name;
     }
+
+
+    public boolean isBeacon() {
+        return isBeacon;
+    }
+
+    public double x() {
+        return x;
+    }
+
+    public  double y() {
+        return y;
+    }
 }
