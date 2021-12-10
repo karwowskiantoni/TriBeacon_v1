@@ -6,11 +6,11 @@ import java.util.stream.Collectors;
 public class Algorithm {
   public Map<String, Integer> findAllConnectedBeacons(User user) {
     HashMap<String, Integer> beaconsDepth = new HashMap<>();
-    List<UserWithDepth> neighbours =
+    Set<UserWithDepth> neighbours =
         user.connections().stream()
             .map(connection -> new UserWithDepth(connection, 1))
-            .collect(Collectors.toList());
-    List<UserWithDepth> visited = new ArrayList<>();
+            .collect(Collectors.toSet());
+    Set<UserWithDepth> visited = new HashSet<>();
     visited.add(new UserWithDepth(user, 0));
 
     LinkedList<UserWithDepth> queue = new LinkedList<>(neighbours);
@@ -19,13 +19,12 @@ public class Algorithm {
       UserWithDepth neighbour = queue.getFirst();
       addIfBeacon(beaconsDepth, neighbour);
       queue.removeFirst();
-      List<UserWithDepth> connections =
+      Set<UserWithDepth> connections =
           neighbour.user.connections().stream()
               .map(connection -> new UserWithDepth(connection, neighbour.depth + 1))
-              .collect(Collectors.toList());
+              .collect(Collectors.toSet());
       for (UserWithDepth connection : connections) {
-        if (notExists(connection, visited)) {
-          visited.add(connection);
+        if (visited.add(connection)) {
           queue.add(connection);
           addIfBeacon(beaconsDepth, connection);
         }
@@ -40,16 +39,6 @@ public class Algorithm {
     }
   }
 
-  private boolean notExists(UserWithDepth userToCompare, List<UserWithDepth> users){
-    for (UserWithDepth user:
-            users) {
-      if(Objects.equals(user.user.name(), userToCompare.user.name())){
-        return false;
-      }
-    }
-    return true;
-  }
-
   private static class UserWithDepth {
     public User user;
     public int depth;
@@ -57,6 +46,19 @@ public class Algorithm {
     public UserWithDepth(User user, int depth) {
       this.user = user;
       this.depth = depth;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (this == o) return true;
+      if (!(o instanceof UserWithDepth)) return false;
+      UserWithDepth that = (UserWithDepth) o;
+      return user.equals(that.user);
+    }
+
+    @Override
+    public int hashCode() {
+      return Objects.hash(user);
     }
   }
 }
