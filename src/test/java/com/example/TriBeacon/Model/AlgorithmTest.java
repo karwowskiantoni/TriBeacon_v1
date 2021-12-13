@@ -1,13 +1,9 @@
 package com.example.TriBeacon.Model;
 
-import org.junit.jupiter.api.Test;
-
-import java.util.*;
-
 import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 
 class AlgorithmTest {
-    private final Algorithm algorithm = new Algorithm();
+    private final TBAlgorithm TBAlgorithm = new TBAlgorithm();
 
 //    @Test
 //    void BDSBeaconPaths1() {

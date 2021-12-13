@@ -3,9 +3,9 @@ package com.example.TriBeacon.Model;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class Algorithm {
-  public Map<String, Integer> findAllConnectedBeacons(User user) {
-    HashMap<String, Integer> beaconsDepth = new HashMap<>();
+public class BFSAlgorithm {
+  public static Map<User, Integer> findAllConnectedBeacons(User user) {
+    HashMap<User, Integer> beaconsDepth = new HashMap<>();
     Set<UserWithDepth> neighbours =
         user.connections().stream()
             .map(connection -> new UserWithDepth(connection, 1))
@@ -33,9 +33,9 @@ public class Algorithm {
     return beaconsDepth;
   }
 
-  private void addIfBeacon(HashMap<String, Integer> map, UserWithDepth dUser){
-    if(dUser.user.isBeacon()){
-      map.put(dUser.user.name(), dUser.depth);
+  private static void addIfBeacon(HashMap<User, Integer> map, UserWithDepth dUser) {
+    if (dUser.user.isBeacon()) {
+      map.put(dUser.user, dUser.depth);
     }
   }
 

@@ -28,15 +28,10 @@ public class MainController {
     users.update(userDto.getName(), userDto.getConnections());
   }
 
-  @GetMapping("/position")
-  public String getPosition(@RequestParam String name) {
-    return new GeometryJSON().toString(users.calculatePosition(name));
-  }
-
   @GetMapping("/positions")
-  public List<String> getPositions() {
-    return users.calculatePositions().stream()
-        .map(polygon -> new GeometryJSON().toString(polygon))
+  public List<String> getPositions(@RequestParam boolean reduceBeacons, int reduceUsers) {
+    return users.calculatePositions(reduceBeacons, reduceUsers).stream()
+        .map(multiPolygon -> new GeometryJSON().toString(multiPolygon))
         .collect(Collectors.toList());
   }
 
