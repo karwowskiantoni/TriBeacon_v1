@@ -19,6 +19,7 @@ public class TBAlgorithm {
             .filter(Optional::isPresent)
             .map(Optional::get)
             .collect(Collectors.toList());
+
     if (reduceBeacons) {
       positions =
           positions.stream()
@@ -37,17 +38,6 @@ public class TBAlgorithm {
     return positions.stream().map(Position::polygon).collect(Collectors.toList());
   }
 
-  private static Position reduceByBeaconsRange(Position position, Users users) {
-    MultiPolygon polygon = position.polygon();
-    for (User user : users.getUsers()) {
-      if (user.isBeacon() && !position.user().connections().contains(user)) {
-        polygon =
-            secureMultiPolygon(polygon.difference(circleInRange(user.x(), user.y(), MAX_RANGE)));
-      }
-    }
-    return new Position(position.user(), polygon);
-  }
-
   private static Position reduceByUsersRange(Position position, List<Position> positions) {
     MultiPolygon polygon = position.polygon();
     for (Position otherPosition : positions) {
@@ -62,6 +52,17 @@ public class TBAlgorithm {
               secureMultiPolygon(
                   polygon.difference(circleInRange(centroid.getX(), centroid.getY(), radius)));
         }
+      }
+    }
+    return new Position(position.user(), polygon);
+  }
+
+  private static Position reduceByBeaconsRange(Position position, Users users) {
+    MultiPolygon polygon = position.polygon();
+    for (User user : users.getUsers()) {
+      if (user.isBeacon() && !position.user().connections().contains(user)) {
+        polygon =
+                secureMultiPolygon(polygon.difference(circleInRange(user.x(), user.y(), MAX_RANGE)));
       }
     }
     return new Position(position.user(), polygon);
