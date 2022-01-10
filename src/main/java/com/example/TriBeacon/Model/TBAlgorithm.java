@@ -12,7 +12,7 @@ public class TBAlgorithm {
   private static final double MIN_RANGE = 100;
   private static final double MAX_RANGE = 150;
 
-  public static List<MultiPolygon> positions(Users users, boolean reduceBeacons, int reduceUsers) {
+  public static List<Position> positions(Users users, boolean reduceBeacons, int reduceUsers) {
     List<Position> positions =
         users.getUsers().stream()
             .map(TBAlgorithm::positionFromBeacons)
@@ -35,7 +35,7 @@ public class TBAlgorithm {
               .collect(Collectors.toList());
     }
 
-    return positions.stream().map(Position::polygon).collect(Collectors.toList());
+    return positions;
   }
 
   private static Position reduceByUsersRange(Position position, List<Position> positions) {

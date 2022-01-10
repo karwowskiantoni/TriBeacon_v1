@@ -1,9 +1,6 @@
 package com.example.TriBeacon.Model;
 
-import com.vividsolutions.jts.geom.Polygon;
-
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 public class User {

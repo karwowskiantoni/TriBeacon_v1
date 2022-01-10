@@ -1,15 +1,12 @@
 package com.example.TriBeacon.Model;
 
-import com.vividsolutions.jts.geom.MultiPolygon;
-import com.vividsolutions.jts.geom.Polygon;
-
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class Users {
   private final Map<String, User> map = new HashMap<>();
 
-  public List<MultiPolygon> calculatePositions(boolean reduceBeacons, int reduceUsers) {
+  public List<Position> calculatePositions(boolean reduceBeacons, int reduceUsers) {
     return TBAlgorithm.positions(this, reduceBeacons, reduceUsers);
   }
 
