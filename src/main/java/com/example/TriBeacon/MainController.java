@@ -32,8 +32,8 @@ public class MainController {
 
     @GetMapping("/positions")
     public List<PositionDTO> getPositions(@RequestParam boolean reduceBeacons, int reduceUsers) {
-        return users.calculatePositions(reduceBeacons, reduceUsers).stream().map(position ->
-                new PositionDTO(position.user(), position.polygon().getCentroid(), position.polygon()))
+        return users.calculatePositions(reduceBeacons, reduceUsers).stream().filter(position -> !position.polygon().isEmpty())
+                .map(position -> new PositionDTO(position.user(), position.polygon().getCentroid(), position.polygon()))
                 .collect(Collectors.toList());
     }
 
