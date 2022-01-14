@@ -1,0 +1,15 @@
+#deletingButton {
+   display: flex;
+   margin-left: 90%;
+}
+
+.konvajs-content {
+   margin-left: 40px;
+   margin-top: 10px;
+   border: 2px solid rgb(21, 124, 221);
+}
+
+button {
+   margin-right: 5px;
+   margin-left: 5px;
+}
