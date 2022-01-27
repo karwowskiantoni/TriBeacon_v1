@@ -15,14 +15,23 @@ function App() {
     const [activePosition, setActivePosition] = useState(null)
     const [showAll, setShowAll] = useState(false);
     // const URL = "https://tri-beacon.herokuapp.com"
-    // const URL = "http://localhost:8080"
-    const URL = ""
+    const URL = "http://localhost:8080"
+    //const URL = ""
     const MAX_RANGE = 150;
 
 
     useEffect(() => {
         localStorage.setItem("users", JSON.stringify(users))
     }, [users])
+
+    useEffect(() => {
+        const interval = setInterval(async () =>{
+            let response = await fetch(URL + `/positions?reduceBeacons=${reduceBeacons}&reduceUsers=${reduceUsers}`);
+            let json = await response.json();
+            setPositions(json)
+        }, 1000)
+        return () => clearInterval(interval);
+    }, [reduceBeacons, reduceUsers])
 
     useEffect(() => {
         async function updateConnection(x, y, id) {
