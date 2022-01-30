@@ -15,8 +15,8 @@ function App() {
     const [activePosition, setActivePosition] = useState(null)
     const [showAll, setShowAll] = useState(false);
     // const URL = "https://tri-beacon.herokuapp.com"
-    const URL = "http://localhost:8080"
-    //const URL = ""
+    // const URL = "http://localhost:8080"
+    const URL = ""
     const MAX_RANGE = 150;
 
 
