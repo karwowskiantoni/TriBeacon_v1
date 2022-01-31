@@ -47,7 +47,7 @@ public class TBAlgorithm {
         Envelope envelope = otherPosition.polygon().getEnvelopeInternal();
         Point centroid = otherPosition.polygon().getCentroid();
         double radius = MAX_RANGE - (Math.max(envelope.getWidth(), envelope.getHeight()) / 2);
-        if (radius > 0) {
+        if (radius > 0 && !centroid.isEmpty()) {
           polygon =
               secureMultiPolygon(
                   polygon.difference(circleInRange(centroid.getX(), centroid.getY(), radius)));
