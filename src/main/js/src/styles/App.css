@@ -1,18 +1,8 @@
-#deletingButton {
-   display: flex;
-   margin-left: 90%;
-}
-
 .konvajs-content {
    margin-left: 40px;
    margin-top: 10px;
    border: 2px solid rgb(21, 124, 221);
-   background-image: url("/src/background.jpg");
+   background-image: url("/src/styles/background.jpg");
    background-position: center;
    background-size: 85%;
-}
-
-button {
-   margin-right: 5px;
-   margin-left: 5px;
 }
