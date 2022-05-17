@@ -14,7 +14,7 @@ export function NavigationBar({
                               }) {
     return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-            <SideBar/>
+            <SideBar URL={URL}/>
             <Button style={{minWidth: 200, marginRight: 20}}
                     variant={reduceBeacons ? "success" : "danger"}
                     onClick={() => setReduceBeacons(!reduceBeacons)}

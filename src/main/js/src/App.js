@@ -3,6 +3,7 @@ import React, {useEffect, useState} from "react";
 import {Users} from "./components/Users.js"
 import {Positions} from "./components/Positions";
 import {NavigationBar} from "./components/NavigationBar";
+import {Card} from "react-bootstrap";
 
 function App() {
     const [users, setUsers] = useState(() => {
@@ -16,8 +17,8 @@ function App() {
     const [activePosition, setActivePosition] = useState(null)
     const [showAll, setShowAll] = useState(false);
     // const URL = "https://tri-beacon.herokuapp.com"
-    // const URL = "http://localhost:8080"
-    const URL = ""
+    const URL = "http://localhost:8080"
+    // const URL = ""
     const MAX_RANGE = 150;
 
 
