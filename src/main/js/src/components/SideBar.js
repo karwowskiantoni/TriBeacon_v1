@@ -1,6 +1,5 @@
 import {Button, Card, Offcanvas} from "react-bootstrap";
 import {useEffect, useState} from "react";
-import CardHeader from "react-bootstrap/CardHeader";
 
 export function SideBar({URL}) {
     const [show, setShow] = useState(false);
@@ -15,9 +14,6 @@ export function SideBar({URL}) {
             <Button variant="primary" onClick={() => setShow(true)} style={{marginLeft: 20, marginRight: 20}}>
                 Devices
             </Button>
-            {devices.map((device) => {
-
-            })}
             <Offcanvas placement={"end"} show={show} onHide={() => setShow(false)}>
                 <Offcanvas.Header closeButton>
                     <Offcanvas.Title>available devices</Offcanvas.Title>
